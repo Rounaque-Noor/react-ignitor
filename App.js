@@ -21,7 +21,9 @@ import ReactDOM from "react-dom/client";
 // );
 
 //React Element
-jsxHeading = <h1 id="head" className="heading">Hello React JSX</h1>;
+const jsxHeading = <h1 id="head" className="heading">Hello React JSX</h1>;
+
+//Also we can use component inside element and vice versa
 
 //React Component
 const Heading2 = () => <h3>Hello Nested "Component Composition" .</h3>;
@@ -30,7 +32,11 @@ const Heading2 = () => <h3>Hello Nested "Component Composition" .</h3>;
 const HeadingComponent = () => (
   <div>
     <Heading2 />
+    {/* we can use react element inside as it is a JS variable  */}
+    {jsxHeading} 
     <h1>Hello React from React Component</h1>
+    {/* we can call this way also because it's just a fn in JS */}
+    {Heading2()}
   </div>
 );
 
