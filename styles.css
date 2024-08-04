@@ -63,3 +63,7 @@
     background-color: rgb(34, 54, 3);
     cursor: pointer;
 }
+
+.upper-body {
+    display: flex;
+}
