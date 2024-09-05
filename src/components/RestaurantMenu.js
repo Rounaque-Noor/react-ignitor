@@ -1,32 +1,36 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { MENU_LIST } from "../utils/constant";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
 
-    const [resInfo, setResInfo] = useState(null);
-    const [menuList, setMenuList] = useState(null);
+    // const [resInfo, setResInfo] = useState(null);
+    // const [menuList, setMenuList] = useState(null);
 
-    useEffect(()=>{
-        fetchData();
-    }, []);
+    // useEffect(()=>{
+    //     fetchData();
+    // }, []);
 
     const {id} = useParams();
     console.log(id);
 
-    const fetchData = async () => {
-        const data = await fetch(MENU_LIST+id);
-        const json = await data.json();
-        setResInfo(json.data);
-        console.log(json.data?.cards[2]?.card?.card?.info);
-        setMenuList(json.data);
+    const resInfo = useRestaurantMenu(id);
 
-    };
+    // const fetchData = async () => {
+    //     const data = await fetch(MENU_LIST+id);
+    //     const json = await data.json();
+    //     setResInfo(json.data);
+    //     console.log(json.data?.cards[2]?.card?.card?.info);
+    //     setMenuList(json.data);
 
-    if (resInfo === null || menuList === null)
+    // };
+
+    // if (resInfo === null || menuList === null)
+        if (resInfo === null)
         return null; // Given error before destructuring, data was not fetched NULL error
     const { name, cuisines, costForTwoMessage } = resInfo?.cards[2]?.card?.card?.info;
-    const menuFull = menuList?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[4]?.card?.card?.itemCards;
+    const menuFull = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[4]?.card?.card?.itemCards;
     return (
         <div>
             <h1>{name}</h1>
