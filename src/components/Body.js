@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Restaurant from "./Restaurant"
 import { RES_LIST } from "../utils/constant";
+import useStatusOnline from "../utils/useStatusOnline";
 
 const Body = () => {
     const [listOfRes, setListOfRes] = useState([]);
@@ -16,6 +17,12 @@ const Body = () => {
         const json = await data.json();
         setListOfRes(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setfilteredList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    }
+
+    const onlineStatus = useStatusOnline();
+
+    if(onlineStatus === false) {
+        return <h1>You are offline! Please check your Internet connection</h1>
     }
 
     return (
