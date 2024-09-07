@@ -25,25 +25,28 @@ const Body = () => {
         return <h1>You are offline! Please check your Internet connection</h1>
     }
 
-    return (
+    return listOfRes.length === 0 ? null : (
         <div>
-            <div className="upper-body">
-                <button className="filter-btn" onClick={
-                    () => {
-                        const filteredList = listOfRes.filter((res) => res.info.sla.deliveryTime < 30);
-                        setfilteredList(filteredList);
-                    }
-                }>Fastest delivery Restaurant in your Area</button>
-                <div>
-                    <input type="text" value={searchText} onChange={ (e) => setsearchText(e.target.value)}/>
+            <div className="flex m-4">
+                <div className="flex items-center">
+                    <input type="text" className="border border-solid border-black rounded-sm" value={searchText} onChange={(e) => setsearchText(e.target.value)} />
                     <button onClick={() => {
-                        const searchedList = listOfRes.filter( (res) => res.info.name.toLowerCase().includes(searchText.toLocaleLowerCase()));
+                        const searchedList = listOfRes.filter((res) => res.info.name.toLowerCase().includes(searchText.toLocaleLowerCase()));
                         setfilteredList(searchedList);
-                    }} className="filter-btn">Search</button>
+                    }} className="px-3 py-1 bg-green-500 m-4 rounded-lg">Search</button>
 
                 </div>
+                <div>
+                    <button className="px-3 py-1 m-4 bg-slate-400 rounded-sm" onClick={
+                        () => {
+                            const filteredList = listOfRes.filter((res) => res.info.sla.deliveryTime < 30);
+                            setfilteredList(filteredList);
+                        }
+                    }>Fastest Restaurant in your Area</button>
+                </div>
+
             </div>
-            <div className="res-container">
+            <div className="flex flex-wrap">
                 {filteredList.map((restaurant) => (
                     <Restaurant key={restaurant.info.id} resData={{ restaurant }} />
                 ))}
