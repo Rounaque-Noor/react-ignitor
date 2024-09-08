@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Restaurant from "./Restaurant"
+import Restaurant, { ComponentPromoted } from "./Restaurant"
 import { RES_LIST } from "../utils/constant";
 import useStatusOnline from "../utils/useStatusOnline";
 
@@ -20,6 +20,8 @@ const Body = () => {
     }
 
     const onlineStatus = useStatusOnline();
+
+    const RestaurantPromoted = ComponentPromoted(Restaurant);
 
     if(onlineStatus === false) {
         return <h1>You are offline! Please check your Internet connection</h1>
@@ -48,7 +50,11 @@ const Body = () => {
             </div>
             <div className="flex flex-wrap">
                 {filteredList.map((restaurant) => (
+                    restaurant.info.promoted ? (
+                        <RestaurantPromoted resData={{ restaurant }} />
+                    ) : (
                     <Restaurant key={restaurant.info.id} resData={{ restaurant }} />
+                    )
                 ))}
             </div>
         </div>
