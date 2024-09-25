@@ -19,7 +19,7 @@ const RestaurantMenu = () => {
     });
     console.log(itemCategory);
     const showItems = () => {
-        setShowCateg(true);
+        setShowCateg(!showCateg);
     }
     return (
         <div>
@@ -31,12 +31,12 @@ const RestaurantMenu = () => {
             <div className="">
                 {itemCategory?.map( items => (
                     <div>
-                        <div className="w-6/12 mx-auto border border-solid h-10 flex justify-between px-4 items-center my-4 bg-slate-200">
+                        <div className="cursor-pointer w-6/12 mx-auto border border-solid h-10 flex justify-between px-4 items-center my-4 bg-slate-200">
                             <span className="font-bold" key={items.card.card.title}>{items.card.card.title}</span>
                             <span onClick={showItems}>🔽</span>
                         </div>
                         <div>
-                            <CategoryMenuList data={items?.card?.card?.itemCards} />
+                            {showCateg && <CategoryMenuList data={items?.card?.card?.itemCards} />}
                         </div>
                     </div>
                 ))}
