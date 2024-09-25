@@ -6,7 +6,7 @@ const Header = () => {
     const onlineStatus = useStatusOnline();
 
     const cartItems = useSelector((state) => state?.cart?.items);
-    console.log(cartItems?.length);
+    console.log(cartItems);
     return (
         <div className="flex justify-between bg-gray-200 shadow-xl">
             <div className="">
