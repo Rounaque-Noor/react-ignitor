@@ -30,10 +30,12 @@ const RestaurantMenu = () => {
             </div>
             <div className="">
                 {itemCategory?.map( items => (
-                    <div>
-                        <div className="cursor-pointer w-6/12 mx-auto border border-solid h-10 flex justify-between px-4 items-center my-4 bg-slate-200">
-                            <span className="font-bold" key={items.card.card.title}>{items.card.card.title}</span>
-                            <span onClick={showItems}>🔽</span>
+                    <div key={items.card.card.title}>
+                        <div onClick={showItems} className="cursor-pointer w-6/12 mx-auto border border-solid h-10 flex justify-between px-4 items-center my-4 bg-slate-200">
+                            <span className="font-bold">{items.card.card.title}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            </svg>
                         </div>
                         <div>
                             {showCateg && <CategoryMenuList data={items?.card?.card?.itemCards} />}

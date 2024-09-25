@@ -6,6 +6,8 @@ import Error from "./src/components/Error";
 import Header from "./src/components/Header";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./src/components/RestaurantMenu";
+import { Provider } from "react-redux";
+import appStore from "./src/utils/redux-toolkit/appStore";
 
 const Grocery = lazy(() => import("./src/components/Grocery"));
 
@@ -51,4 +53,6 @@ const appRoute = createBrowserRouter([
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={appRoute} />);
+root.render(<Provider store={appStore}>
+  <RouterProvider router={appRoute} />
+</Provider>);
