@@ -17,7 +17,6 @@ const RestaurantMenu = () => {
     const itemCategory = categories?.filter((item) => {
         return item.card?.card?.["@type"]?.includes('ItemCategory');
     });
-    console.log(itemCategory);
     const showItems = () => {
         setShowCateg(!showCateg);
     }

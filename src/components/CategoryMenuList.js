@@ -4,10 +4,9 @@ import { addItems } from "../utils/redux-toolkit/cartSlice";
 
 const CategoryMenuList = (props) => {
     const { data } = props;
-    console.log(data);
     const dispatch = useDispatch();
-    const addItem = (name) => {
-        dispatch(addItems(name));
+    const addItem = (menuItems) => {
+        dispatch(addItems(menuItems));
     }
     return (
         <div className="flex justify-center">
@@ -22,7 +21,7 @@ const CategoryMenuList = (props) => {
                         <div className="relative w-40">
                             <img className="rounded-lg h-[80px] w-[120px] object-center lg:h-[80px] lg:w-[120px]" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + menuItems.card.info.imageId} alt={menuItems.card.info.name} />
                             <div className="absolute left-10 bottom-0 right-0">
-                                <button onClick={() => addItem(menuItems.card.info.name)} className="bg-slate-800 text-white rounded-md p-1">Add+</button>
+                                <button onClick={() => addItem(menuItems)} className="bg-slate-800 text-white rounded-md p-1">Add+</button>
                             </div>
                         </div>
                     </div>
