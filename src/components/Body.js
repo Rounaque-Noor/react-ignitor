@@ -31,7 +31,7 @@ const Body = () => {
         <div>
             <div className="flex m-4">
                 <div className="flex items-center">
-                    <input type="text" className="border border-solid border-black rounded-sm" value={searchText} onChange={(e) => setsearchText(e.target.value)} />
+                    <input data-testid="searchInput" type="text" className="border border-solid border-black rounded-sm" value={searchText} onChange={(e) => setsearchText(e.target.value)} />
                     <button onClick={() => {
                         const searchedList = listOfRes.filter((res) => res.info.name.toLowerCase().includes(searchText.toLocaleLowerCase()));
                         setfilteredList(searchedList);
